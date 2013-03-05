@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Demo customForms</title>
+	
+	<meta charset="utf-8">
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="plugins/mouseWheel/jquery.mousewheel.js"></script>
+	<script src="plugins/hashTabs/scripts/jquery.hash-tabs.js"></script>
+	<script src="scripts/jquery.better-zoom.js"></script>
+	<script>
+$(function(){
+	$('.wrapper-demo').hashTabs({});
+	$('.better-zoom').betterZoom({
+		width: 200,
+		height: 200,
+		limits: false
+	});
+});
+	</script>
+
+	<link rel="stylesheet" href="plugins/hashTabs/styles/demo.css">
+	<link rel="stylesheet" href="styles/demo.css">
+	<link rel="stylesheet" href="styles/custom-forms.css">
+</head>
+<body>
+	<div class="wrapper-demo hash-tabs">
+		<nav class="triggers">
+			<a href="#html_box" class="trigger">Html</a>
+			<a href="#css_box" class="trigger">Css</a>
+			<a href="#js_box" class="trigger">Js</a>
+			<a href="#demo_box" class="trigger">Demo</a>
+		</nav>
+		<div class="tabs">
+			<div class="tab">
+				<pre></pre>
+			</div>
+			<div class="tab">
+				<pre></pre>
+			</div>
+			<div class="tab">
+				<pre></pre>
+			</div>
+			<div class="tab">
+				<div class="demo">
+					<a href="demo.jpg" class="better-zoom">
+						<img src="demo.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
