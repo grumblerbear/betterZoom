@@ -1,8 +1,8 @@
 (function( $ ){
 
 	var methods;
-	var customClass = 'better-zoom-wrapper';
-	var customSelector = '.' + customClass;
+//	var customClass = 'better-zoom-wrapper';
+//	var customSelector = '.' + customClass;
 
 	methods = {
 		init: function (options) {
@@ -57,7 +57,6 @@
 						glass.after(overlay);
 						overlay.mousemove(setPosition);
 						overlay.mouseout(setPosition);
-						overlay.mousewheel(setPosition);
 					}
 
 					image.mousemove(setPosition);
@@ -92,6 +91,15 @@
 
 						var left = target.pageX - offset.left;
 						var top = target.pageY - offset.top;
+
+						if (options.overlay) {
+							overlay.css({
+								left: offset.left + 'px',
+								top: offset.top + 'px',
+								width: image.outerWidth() + 'px',
+								height: image.outerHeight() + 'px'
+							});
+						}
 
 						if (left < 0 || top < 0 || left > image.outerWidth() || top > image.outerHeight() ) {
 							glass.hide();
@@ -143,6 +151,7 @@
 			return methods.init.apply( this, arguments );
 		} else {
 			$.error( 'Метод ' +  method + ' в jQuery.betterZoom не существует' );
+			return false;
 		}
 	};
 })( jQuery );
