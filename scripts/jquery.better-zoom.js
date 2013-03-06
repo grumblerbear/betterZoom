@@ -1,4 +1,4 @@
-(function( source$ ){
+(function( $ ){
 
 	var methods;
 	var customClass = 'better-zoom-wrapper';
