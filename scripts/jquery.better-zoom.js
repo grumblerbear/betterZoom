@@ -8,17 +8,17 @@
 		init: function (options) {
 			//noinspection JSValidateTypes
 			options = $.extend({
-				width: 100,
-				height: 100,
-				limits: true
+				width: 200,
+				height: 200,
+				limits: true,
+				overlay: false
 			}, options);
 
 			return this.each(function () {
-				// Целевое изображение и увеличенное
 				var image;
 				var source = new Image();
-				// Лупа
-				var glass;
+
+				$(this).addClass('better-zoom-wrapper');
 
 				if ($(this).is('img')) {
 					image = $(this);
@@ -32,29 +32,58 @@
 				}
 
 				$(source).load(function(){
-					var widthRatio = source.width / image.outerWidth();
-					var heightRatio =  source.height / image.outerHeight();
-
-					$('body').append('<div class="better-zoom-glass"><div>');
-
-					glass = $('.better-zoom-glass');
+					var glass = $('<div class="better-zoom-glass"><div>');
 					glass.css({
 						backgroundImage: 'url(' + source.src + ')',
 						width: options.width + 'px',
 						height: options.height + 'px'
 					});
+					glass.data({
+						source: source,
+						image: image,
+						options: options
+					});
+
+					image.after(glass);
+
+					if (options.overlay) {
+						var overlay = $('<div class="better-zoom-overlay"><div>');
+						overlay.css({
+							left: image.offset().left + 'px',
+							top: image.offset().top + 'px',
+							width: image.outerWidth() + 'px',
+							height: image.outerHeight() + 'px'
+						});
+						glass.after(overlay);
+					}
 
 					image.mousemove(setPosition);
 					glass.mousemove(setPosition);
 
 					image.mouseout(setPosition);
 					glass.mouseout(setPosition);
-					/*
+
 					image.mousewheel(setPosition);
 					glass.mousewheel(setPosition);
-					*/
 
 					function setPosition(target) {
+						var glass;
+						if ($(this).is('.better-zoom-glass')) {
+							glass = $(this);
+						} else {
+							glass = $(this).next();
+						}
+						var image = glass.data('image');
+						var source = glass.data('source');
+						var options = glass.data('options');
+
+						if (options.overlay) {
+							var overlay = glass.next();
+						}
+
+						var widthRatio = source.width / image.outerWidth();
+						var heightRatio =  source.height / image.outerHeight();
+
 						var offset = image.offset();
 
 						var left = target.pageX - offset.left;
@@ -62,15 +91,15 @@
 
 						if (left < 0 || top < 0 || left > image.outerWidth() || top > image.outerHeight() ) {
 							glass.hide();
+							if (options.overlay) {
+								overlay.hide();
+							}
 						} else {
-							var leftShift, leftPosition;
-							var topShift, topPosition;
+							var leftShift = (left * widthRatio - glass.outerWidth() / 2) * (-1);
+							var leftPosition = target.pageX - glass.outerWidth() / 2;
 
-							leftShift = (left * widthRatio - glass.outerWidth() / 2) * (-1);
-							leftPosition = target.pageX - glass.outerWidth() / 2;
-
-							topShift = (top * heightRatio - glass.outerHeight() / 2) * (-1);
-							topPosition = target.pageY - glass.outerHeight() / 2;
+							var topShift = (top * heightRatio - glass.outerHeight() / 2) * (-1);
+							var topPosition = target.pageY - glass.outerHeight() / 2;
 
 							if (options.limits) {
 								if (leftShift > 0) {
@@ -93,6 +122,9 @@
 							});
 
 							glass.show();
+							if (options.overlay) {
+								overlay.show();
+							}
 						}
 					}
 				});

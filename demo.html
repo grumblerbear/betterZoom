@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<title>Demo customForms</title>
+	<title>Demo betterZoom</title>
 	
 	<meta charset="utf-8">
 
@@ -13,9 +13,12 @@
 $(function(){
 	$('.wrapper-demo').hashTabs({});
 	$('.better-zoom').betterZoom({
-		width: 200,
-		height: 200,
-		limits: false
+		limits: false,
+		overlay: true
+	});
+	$('.better-zoom2').betterZoom({
+		width: 300,
+		height: 300
 	});
 });
 	</script>
@@ -46,6 +49,9 @@ $(function(){
 				<div class="demo">
 					<a href="demo.jpg" class="better-zoom">
 						<img src="demo.jpg">
+					</a>
+					<a href="demo2.jpg" class="better-zoom2">
+						<img src="demo2.jpg">
 					</a>
 				</div>
 			</div>
