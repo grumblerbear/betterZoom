@@ -1,7 +1,7 @@
 (function( $ ){
 
 	var methods;
-//	var customClass = 'better-zoom-wrapper';
+	var customClass = 'better-zoom-wrapper';
 //	var customSelector = '.' + customClass;
 
 	methods = {
@@ -18,7 +18,7 @@
 				var image;
 				var source = new Image();
 
-				$(this).addClass('better-zoom-wrapper');
+				$(this).addClass(customClass);
 
 				if ($(this).is('img')) {
 					image = $(this);
