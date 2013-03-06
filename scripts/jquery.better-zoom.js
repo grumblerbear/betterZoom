@@ -66,9 +66,6 @@
 					image.mouseout(setPosition);
 					glass.mouseout(setPosition);
 
-					image.mousewheel(setPosition);
-					glass.mousewheel(setPosition);
-
 					function setPosition(target) {
 						var glass;
 						if ($(this).is('.better-zoom-glass')) {
