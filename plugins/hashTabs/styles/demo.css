@@ -1,6 +1,31 @@
 body {
 	background: #efebe4;
+	overflow-y: scroll;
 }
+.tab table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.tab table,
+.tab td {
+	border: 1px solid lightgray;
+}
+.tab td {
+	padding: 7px 10px 5px;
+	vertical-align: top;
+}
+.wrapper-demo .tab .demo {
+	margin-bottom: 20px;
+}
+.wrapper-demo .tab .demo:last-child {
+	margin-bottom: 0;
+}
+.wrapper-demo .tab .demo pre {
+	margin-bottom: 20px;
+	border: 1px dashed lightgray;
+	padding: 10px;
+}
+
 
 .wrapper-demo .tab,
 .demo .tab {

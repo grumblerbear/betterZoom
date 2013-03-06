@@ -8,24 +8,27 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="plugins/mouseWheel/jquery.mousewheel.js"></script>
 	<script src="plugins/hashTabs/scripts/jquery.hash-tabs.js"></script>
+	<script src="plugins/highlight.js/highlight.pack.js"></script>
 	<script src="scripts/jquery.better-zoom.js"></script>
 	<script>
-$(function(){
-	$('.wrapper-demo').hashTabs({});
-	$('.better-zoom').betterZoom({
-		limits: false,
-		overlay: true
+	hljs.tabReplace = '   ';
+	hljs.initHighlightingOnLoad();
+	$(function(){
+		$('.wrapper-demo').hashTabs({});
+		$('.better-zoom').betterZoom({
+			limits: false,
+			overlay: true
+		});
+		$('.better-zoom2').betterZoom({
+			width: 300,
+			height: 300
+		});
 	});
-	$('.better-zoom2').betterZoom({
-		width: 300,
-		height: 300
-	});
-});
 	</script>
 
 	<link rel="stylesheet" href="plugins/hashTabs/styles/demo.css">
+	<link rel="stylesheet" href="plugins/highlight.js/styles/xcode.css">
 	<link rel="stylesheet" href="styles/demo.css">
-	<link rel="stylesheet" href="styles/custom-forms.css">
 </head>
 <body>
 	<div class="wrapper-demo hash-tabs">
@@ -34,26 +37,98 @@ $(function(){
 			<a href="#css_box" class="trigger">Css</a>
 			<a href="#js_box" class="trigger">Js</a>
 			<a href="#demo_box" class="trigger">Demo</a>
+			<a href="#docs_box" class="trigger">Docs</a>
 		</nav>
 		<div class="tabs">
 			<div class="tab">
-				<pre></pre>
+				<pre><code class="html">&lt;a href="demo.jpg" class="better-zoom"&gt;
+	&lt;img src="demo.jpg"&gt;
+&lt;/a&gt;</code></pre>
 			</div>
 			<div class="tab">
-				<pre></pre>
+				<pre><code class="css">.demo img {
+	max-width: 100%;
+}
+.better-zoom-glass {
+	position: absolute;
+	z-index: 2;
+	background-repeat: no-repeat;
+	background-color: white;
+	display: none;
+	border-radius:50%;
+	cursor: none;
+	box-shadow:
+		0 0 7px 7px rgba(0, 0, 0, 0.25),
+		inset 0 10pt 40pt rgba(255, 255, 255, .6),
+		inset 0 0 30pt 2pt rgba(0, 0, 0, 0.25);
+}
+.better-zoom-overlay {
+	position: absolute;
+	z-index: 1;
+	background-color: rgba(0,0,0,.5);
+	display: none;
+}</code></pre>
 			</div>
 			<div class="tab">
-				<pre></pre>
+				<pre><code class="javascript">$('.better-zoom').betterZoom();</code></pre>
 			</div>
 			<div class="tab">
 				<div class="demo">
+					<pre><code class="javascript">$('.better-zoom').betterZoom({
+	limits: false,
+	overlay: true
+});</code></pre>
 					<a href="demo.jpg" class="better-zoom">
 						<img src="demo.jpg">
 					</a>
+				</div>
+				<div class="demo">
+					<pre><code class="javascript">$('.better-zoom2').betterZoom({
+	width: 300,
+	height: 300
+});</code></pre>
 					<a href="demo2.jpg" class="better-zoom2">
 						<img src="demo2.jpg">
 					</a>
 				</div>
+			</div>
+			<div class="tab">
+				<table>
+					<colgroup width="100px"></colgroup>
+					<colgroup></colgroup>
+					<tr>
+						<td>width</td>
+						<td>
+							Default: <strong>200</strong><br>
+							Possible values: <strong>integer</strong><br>
+							Ширина лупы
+						</td>
+					</tr>
+					<tr>
+						<td>height</td>
+						<td>
+							Default: <strong>200</strong><br>
+							Possible values: <strong>integer</strong><br>
+							Высота лупы
+						</td>
+					</tr>
+					<tr>
+						<td>limits</td>
+						<td>
+							Default: <strong>true</strong><br>
+							Possible values: <strong>true / false</strong><br>
+							Выход лупы за пределы картинки
+						</td>
+					</tr>
+					<tr>
+						<td>overlay</td>
+						<td>
+							Default: <strong>false</strong><br>
+							Possible values: <strong>true / false</strong><br>
+							Наложение оверлея на картинку
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
