@@ -55,6 +55,9 @@
 							height: image.outerHeight() + 'px'
 						});
 						glass.after(overlay);
+						overlay.mousemove(setPosition);
+						overlay.mouseout(setPosition);
+						overlay.mousewheel(setPosition);
 					}
 
 					image.mousemove(setPosition);
@@ -71,7 +74,11 @@
 						if ($(this).is('.better-zoom-glass')) {
 							glass = $(this);
 						} else {
-							glass = $(this).next();
+							if ($(this).is('.better-zoom-overlay')) {
+								glass = $(this).prev();
+							} else {
+								glass = $(this).next();
+							}
 						}
 						var image = glass.data('image');
 						var source = glass.data('source');
